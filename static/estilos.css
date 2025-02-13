@@ -1,0 +1,169 @@
+/* Reseteo básico de márgenes y rellenos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilo general para el cuerpo */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-image: url(https://www.clarin.com/img/2017/04/04/SyYsbHZTe_1256x620.jpg);
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Estilo para el título */
+h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Animación para el fade in del título */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Contenedor principal */
+#content {
+    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco semitransparente */
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Sombra suave */
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    backdrop-filter: blur(10px); /* Efecto de desenfoque en el fondo */
+}
+
+/* Estilo para la pregunta */
+#question {
+    font-size: 1.6em;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 500;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Estilo para los botones de opciones */
+.option {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    margin: 10px;
+    border-radius: 50px; /* Botones redondeados */
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto al pasar el cursor sobre las opciones */
+.option:hover {
+    background-color: #c1d5e2;
+    transform: translateY(-5px); /* Sutil levantamiento del botón */
+}
+
+/* Efecto de clic en el botón */
+.option:active {
+    transform: translateY(2px); /* Hacer que el botón baje al hacer clic */
+}
+
+/* Estilo para los botones de "Reiniciar" y "Salir" */
+button {
+    background-color: #0e91e7;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 15px 0;
+    border-radius: 50px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 200px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto al pasar el cursor sobre los botones de "Reiniciar" y "Salir" */
+button:hover {
+    background-color: #dce6ec;
+    transform: translateY(-5px);
+}
+
+/* Efecto de clic en los botones de "Reiniciar" y "Salir" */
+button:active {
+    transform: translateY(2px);
+}
+
+/* Estilo cuando la respuesta final se muestra */
+#content p {
+    font-size: 1.4em;
+    color: #333;
+    font-weight: 400;
+    margin-top: 30px;
+}
+
+/* Animación para las respuestas */
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Adaptabilidad para pantallas pequeñas */
+@media (max-width: 600px) {
+    #content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2.5em;
+    }
+
+    #question {
+        font-size: 1.3em;
+    }
+
+    .option {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 1em;
+    }
+}
+
+/* Contenedor para los botones de "Reiniciar" y "Salir" */
+button-container {
+    display: flex;
+    flex-direction: column; /* Colocar los botones uno debajo del otro */
+    align-items: center;
+}
+
+.botones {
+    position: fixed; /* Los coloca en la parte inferior de la ventana */
+    bottom: 15px; /* Espacio desde el fondo */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%); /* Ajuste perfecto al centro */
+    display: flex;
+    width: 100%; /* Asegura que los botones se alineen correctamente */
+    padding-left:200px;
+    justify-content: 50px; /* Separa los botones entre sí */
+}

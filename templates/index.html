@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/estilos.css">
+    <title>Base de Conocimiento de Sistema Espacial</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function reiniciar() {
+            location.reload();  // Recargar la página
+        }
+        function gracias() {
+            alert("Gracias por usar el programa - 7245 !!!!");// Recargar la página
+            location.reload();  // Recargar la página
+        }
+    </script>
+</head>
+<body>
+    <h1>Base de Conocimiento de Sistema Espacial</h1>
+    <div class="botones">
+        <button type="button" onclick="reiniciar()">Reiniciar</button>
+        <br>
+        <button type="button" onclick="gracias()">Salir</button>
+    </div>
+    <div id="content">
+        <p id="question">{{ pregunta }}</p>
+        <form id="question-form">
+            {% for key, value in opciones.items() %}
+                <button type="button" class="option" data-option="{{ key }}">{{ value }}</button><br>
+            {% endfor %}
+        </form>
+    </div>
+    <script>
+        $(document).on('click', '.option', function () {
+            const opcion = $(this).data('option');  // Recuperar la palabra seleccionada
+            $.ajax({
+                url: '/pregunta',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ opcion: opcion }),
+                success: function (response) {
+                    if (response.pregunta) {
+                        // Actualizar la pregunta y las opciones
+                        $('#question').text(response.pregunta);
+                        $('#question-form').empty();
+                        $.each(response.respuestas, function (key, value) {
+                            $('#question-form').append(`<button type="button" class="option" data-option="${key}">${value}</button><br>`);
+                        });
+                    } else if (response.respuesta_final) {
+                        // Mostrar la respuesta final
+                        $('#content').html(`<p>${response.respuesta_final}</p>`);
+                    }
+                },
+                error: function (error) {
+                    alert('Error: ' + (error.responseJSON.error || 'Error desconocido'));
+                }
+            });
+        });
+    </script>
+</body>
+</html>
